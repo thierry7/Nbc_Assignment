@@ -28,7 +28,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -39,7 +38,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.example.nbc_assignment.R
 import com.example.nbc_assignment.model.Item
 import com.example.nbc_assignment.model.Shelf
@@ -98,6 +96,12 @@ class MainActivity : ComponentActivity() {
             is DataResult.Error -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(text = "Error loading data ${result.exception}", color = Color.Black)
+                }
+            }
+            is DataResult.Loading ->{
+                Timber.tag("LoadingScreen").d("Displaying loading screen")
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
                 }
             }
 

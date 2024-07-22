@@ -14,6 +14,7 @@ import javax.inject.Inject
 sealed class DataResult<out T> {
     data class Success<out T>(val data: T) : DataResult<T>()
     data class Error(val exception: Exception) : DataResult<Nothing>()
+    data object Loading : DataResult<Nothing>()
 }
 class DataRepository @Inject constructor(
     private val context: Context,

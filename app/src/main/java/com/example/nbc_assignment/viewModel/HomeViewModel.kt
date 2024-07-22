@@ -16,7 +16,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val repository: DataRepository
 ): ViewModel() {
-    private val _homepageData = MutableStateFlow<DataResult<Page>?>(null)
+    private val _homepageData = MutableStateFlow<DataResult<Page>?>(DataResult.Loading)
     val homepageData: StateFlow<DataResult<Page>?> = _homepageData
 
     init {
@@ -33,5 +33,8 @@ class HomeViewModel @Inject constructor(
                 _homepageData.value = DataResult.Error(e)
             }
         }
+    }
+    fun getData(){
+        fetchHomepageData()
     }
 }
