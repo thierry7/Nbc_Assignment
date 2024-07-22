@@ -154,13 +154,58 @@ class MainActivity : ComponentActivity() {
         }
 
     }
+    @Composable
+    fun TrendingItemView(item: Item.Show) {
+        Column(
+            modifier = Modifier
+                .padding(vertical = 0.dp, horizontal = 8.dp )
+                .width(180.dp)
+        ) {
+            Box(
+                modifier = Modifier.fillMaxHeight()
+            ) {
+                Image(
+                    painter = rememberAsyncImagePainter(model = item.image),
+                    contentDescription = "",
+                    modifier = Modifier.size(240.dp),
+                    contentScale = ContentScale.Crop
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = item.title,
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.White,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 2
+
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Icon(
+                    painter = painterResource(id = R.drawable.img),
+                    contentDescription = "",
+                    modifier = Modifier.size(26.dp).weight(.3f),
+                    tint = Color.White,
+
+                    )
+            }
+        }
+    }
 
     @Composable
     fun ContinueWatchingItemView(item: Item.Live) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 8.dp, vertical = 0.dp)
-                .height(250.dp)
+                .height(200.dp)
                 .wrapContentSize()
         ) {
             Box(modifier = Modifier.fillMaxHeight(0.8f)) {
@@ -199,58 +244,13 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Composable
-    fun TrendingItemView(item: Item.Show) {
-        Column(
-            modifier = Modifier
-                .padding(vertical = 0.dp, horizontal = 8.dp )
-                .width(190.dp)
-        ) {
-            Box(
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                Image(
-                    painter = rememberAsyncImagePainter(model = item.image),
-                    contentDescription = "",
-                    modifier = Modifier.size(280.dp),
-                    contentScale = ContentScale.Crop
-                )
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = item.title,
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White,
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 2
-
-                    )
-                Spacer(modifier = Modifier.width(12.dp))
-
-                Icon(
-                    painter = painterResource(id = R.drawable.img),
-                    contentDescription = "",
-                    modifier = Modifier.size(26.dp).weight(.3f),
-                    tint = Color.White,
-
-                )
-            }
-        }
-    }
 
     @Composable
     fun LatestEpisodeItemView(item: Item.Episode) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 8.dp, vertical = 0.dp)
-                .height(250.dp)
+                .height(200.dp)
                 .wrapContentSize()
         ) {
             Box(
