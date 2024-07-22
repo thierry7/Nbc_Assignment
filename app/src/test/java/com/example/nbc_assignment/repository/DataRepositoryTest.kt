@@ -61,4 +61,24 @@ class DataRepositoryTest {
 
         assert(result is DataResult.Error)
     }
+
+    @Test
+    fun `getHomepageData returns error when JSON is invalid`() = runTest {
+        val invalidJsonStream: InputStream = "invalid json".byteInputStream()
+        Mockito.`when`(context.assets.open("homepage.json")).thenReturn(invalidJsonStream)
+
+        val result = dataRepository.getHomepageData()
+
+        assert(result is DataResult.Error)
+    }
+
+    @Test
+    fun `getHomepageData returns error when JSON is empty`() = runTest {
+        val emptyJsonStream: InputStream = "".byteInputStream()
+        Mockito.`when`(context.assets.open("homepage.json")).thenReturn(emptyJsonStream)
+
+        val result = dataRepository.getHomepageData()
+
+        assert(result is DataResult.Error)
+    }
 }

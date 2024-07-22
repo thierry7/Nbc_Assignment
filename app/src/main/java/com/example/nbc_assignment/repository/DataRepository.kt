@@ -31,7 +31,8 @@ class DataRepository @Inject constructor(
                 val type = object : TypeToken<Page>() {}.type
                 val page = gson.fromJson<Page>(bufferedReader, type)
                 if (page == null || page.shelves.isEmpty()) {
-                    throw NullPointerException("Parsed Page object is null or has empty shelves")
+                    Timber.i("Parsed Page object is null or has empty shelves")
+                    DataResult.Success(null)
                 }
                 Timber.i("Successfully parsed homepage data: $page")
 
